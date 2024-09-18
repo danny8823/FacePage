@@ -27,7 +27,6 @@ const usersController = {
 
         res.json({
             message: {
-                username,
                 status: 'registered'
             }
         })
@@ -55,7 +54,8 @@ const usersController = {
 
         res.json({
             message: "Login success",
-            token
+            token,
+            user
         })
     }),
     profile: asyncHandler(async(req,res) => {

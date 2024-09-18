@@ -6,6 +6,10 @@ const postSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+        content : {
+            type: String,
+            required: true
+        },
         author: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
@@ -14,6 +18,8 @@ const postSchema = new mongoose.Schema(
             type: Date,
             required: true
         }
+    },{
+        timestamps: true
     }
 )
 

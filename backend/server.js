@@ -2,6 +2,7 @@ const express = require('express')
 const server = express()
 const mongoose = require('mongoose')
 const userRouter = require('./routes/userRoute')
+const postRouter = require('./routes/postRoute')
 const PORT = 9999
 require('dotenv').config()
 
@@ -16,6 +17,7 @@ mongoose
 server.use(express.json())
 
 server.use('/',userRouter)
+server.use('/',postRouter)
 
 
 server.listen(PORT,() => {
