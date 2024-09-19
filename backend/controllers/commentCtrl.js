@@ -6,8 +6,8 @@ const User = require('../model/UserModel')
 const commentControl = {
     postComment : asyncHandler(async(req,res) => {
         const {comment,postId,authorId} = req.body
-
-        if(!comment || !postId || authorId) {
+        console.log(req.body)
+        if(!comment || !postId || !authorId) {
             res.json({
                 error: 'Please fill out all fields'
             })
@@ -29,6 +29,38 @@ const commentControl = {
             author: commentAuthor,
             post: thePost
         })
+    }),
+    deleteComment: asyncHandler(async(req,res) => {
+        const {id} = req.body
+
+        if(!id) {
+            res.json({
+                error: 'Please fill out all fields'            
+            })
+        }
+
+        const commentToBeDel = await Comment.findByIdAndDelete(id)
+
+        res.json({
+            message: 'This has been deleted',
+            commentToBeDel
+        })
+    }),
+    listCommentsByPost: asyncHandler(async(req,res) => {
+        const {postId} = req.body
+
+        if(!postId) {
+            res.json({
+                error: 'Please fill out all fields'
+            })
+        }
+
+        const commentsByPost = await Comment.find({
+            post: postId
+        })
+
+        res.send(commentsByPost)
+
     })
 }
 

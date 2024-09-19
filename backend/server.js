@@ -3,6 +3,7 @@ const server = express()
 const mongoose = require('mongoose')
 const userRouter = require('./routes/userRoute')
 const postRouter = require('./routes/postRoute')
+const commentRouter = require('./routes/commentRoute')
 const PORT = 9999
 require('dotenv').config()
 
@@ -18,7 +19,7 @@ server.use(express.json())
 
 server.use('/',userRouter)
 server.use('/',postRouter)
-
+server.use('/', commentRouter)
 
 server.listen(PORT,() => {
     console.log(`Server started and listening on port: ${PORT}`)
