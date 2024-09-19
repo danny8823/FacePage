@@ -67,7 +67,8 @@ const usersController = {
 
         res.json({
             username: user.username,
-            email: user.email
+            email: user.email,
+            user
         })
     }),
     changePassword: asyncHandler(async (req,res) => {
@@ -107,6 +108,24 @@ const usersController = {
         res.json({
             message: 'Profile update success'
         })
+    }),
+    deleteAccount: asyncHandler(async(req,res) => {
+        const {id} = req.body;
+        const userProfile = await User.findByIdAndDelete(id)
+
+        if(!id) {
+            throw new Error('Please provide more information')
+        }
+
+        res.send(
+            userProfile
+        )
+
+
+    }),
+    listAll: asyncHandler(async(req,res) => {
+        const allUsers = await User.find()
+        res.send(allUsers)
     })
 }
 

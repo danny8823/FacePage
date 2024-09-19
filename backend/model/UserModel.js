@@ -12,6 +12,10 @@ const userSchema = new mongoose.Schema(
             required: true,
             unique: true,
         },
+        image: {
+            type: String,
+            default: 'https://via.placeholder.com/250'
+        },
         password: {
             type: String,
             required: true
