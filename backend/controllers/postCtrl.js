@@ -28,6 +28,17 @@ const postController = {
             allPosts
         })
     }),
+    listByAuthor: asyncHandler(async(req,res) => {
+        const {authorId} = req.body
+        if(!authorId) {
+            throw new Error('Need author id')
+        }
+        const allPostsByAuthor = await Post.find({
+            author: authorId
+        })
+
+        res.send(allPostsByAuthor)
+    }),
     listOne: asyncHandler(async(req,res) => {
         const {_id} = req.body
 
