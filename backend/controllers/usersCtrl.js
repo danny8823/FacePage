@@ -94,19 +94,21 @@ const usersController = {
         })
     }),
     updateProfile: asyncHandler(async (req,res) => {
-        const {email,username} = req.body;
+        const {email,username,description} = req.body;
         const updatedUser = await User.findByIdAndUpdate(
             req.user,
             {
                 username,
-                email
+                email,
+                description
             },
             {
                 new: true
             }
         )
         res.json({
-            message: 'Profile update success'
+            message: 'Profile update success',
+            updatedUser
         })
     }),
     deleteAccount: asyncHandler(async(req,res) => {

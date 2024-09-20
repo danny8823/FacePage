@@ -12,6 +12,10 @@ const userSchema = new mongoose.Schema(
             required: true,
             unique: true,
         },
+        description: {
+            type: String,
+            default: 'Description goes here....'
+        },
         image: {
             type: String,
             default: 'https://via.placeholder.com/250'

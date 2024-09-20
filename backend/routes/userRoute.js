@@ -9,4 +9,5 @@ userRouter.get('/api/v1/users/list-all',usersController.listAll)
 userRouter.put('/api/v1/users/change-password', usersController.changePassword)
 userRouter.put('/api/v1/users/update-profile', usersController.updateProfile)
 userRouter.delete('/api/v1/users/delete-profile',usersController.deleteAccount)
+
 module.exports = userRouter
