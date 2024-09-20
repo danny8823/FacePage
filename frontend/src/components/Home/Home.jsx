@@ -4,6 +4,9 @@ import { useFormik } from 'formik';
 import {useMutation} from '@tanstack/react-query'
 import { loginAPI } from '../../services/userServices';
 import { useNavigate } from 'react-router-dom';
+import { Alert, Button } from '@mui/material'
+import CheckIcon from '@mui/icons-material/Check';
+import { loginAction } from '../../redux/slice/authSlice';
 const Home = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -15,13 +18,13 @@ const Home = () => {
 
   const formik = useFormik({
     initialValues: {
-        email: '',
-        password: ''
+        email: 'Email Address',
+        password: 'password'
     },
     onSubmit: (values) => {
         mutateAsync(values)
             .then((data)=>{
-                dispatch()
+                dispatch(loginAction(data))
                 localStorage.setItem('userInfo', JSON.stringify(data))
                 navigate('/')
             })
@@ -30,6 +33,7 @@ const Home = () => {
             })
     }
   })
+
   return (
     <div>
         <div>
@@ -39,21 +43,24 @@ const Home = () => {
         <div>
             <form onSubmit={formik.handleSubmit}>
                 <input 
-                    type = 'email' 
-                    defaultValue='Email Address' 
+                    type = 'email'
                     name = 'email'
                     onChange = {formik.handleChange}
                     value = {formik.values.email}
                 />
                 <input 
                     type = 'password'
-                    defaultValue= 'Password'
                     name = 'password'
                     onChange = {formik.handleChange}
                     value = {formik.values.password}
                 />
-                
+                <Button variant='contained' type = 'submit' onClose={()=>{}}>Log In</Button>
             </form>
+        </div>
+        <div>
+            {isSuccess && <Alert icon={<CheckIcon fontSize = 'inhereit'/>} severity='success'>Login Successful!</Alert>}
+            {isPending && <Alert severity='info'>Loading...</Alert>}
+            {isError && <Alert severity='error'>{error.message}</Alert>}
         </div>
     </div>
   )
