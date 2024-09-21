@@ -1,21 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {useDispatch} from 'react-redux'
 import { useFormik } from 'formik';
 import {useMutation} from '@tanstack/react-query'
 import { loginAPI } from '../../services/userServices';
-import { useNavigate } from 'react-router-dom';
-import { Alert, Button } from '@mui/material'
+import { Link, useNavigate } from 'react-router-dom';
+import { Alert, Button  } from '@mui/material';
+import {Modal} from 'react-bootstrap'
 import CheckIcon from '@mui/icons-material/Check';
 import { loginAction } from '../../redux/slice/authSlice';
+import './Home.css'
+import logo from '../../assets/fp-logo.png'
+import Register from '../Register/Register';
+
 const Home = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const [show,setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
   const {mutateAsync, isPending, isError, error, isSuccess} = useMutation({
     mutationFn: loginAPI,
     mutationKey: ['login']
   })
 
+  console.log('show', show)
   const formik = useFormik({
     initialValues: {
         email: 'Email Address',
@@ -26,7 +36,7 @@ const Home = () => {
             .then((data)=>{
                 dispatch(loginAction(data))
                 localStorage.setItem('userInfo', JSON.stringify(data))
-                navigate('/')
+                // navigate('/')
             })
             .catch((error)=>{
                 console.log(error)
@@ -35,34 +45,61 @@ const Home = () => {
   })
 
   return (
-    <div>
-        <div>
-            <h1>Facepage</h1>
-            <p>Welcome Back.</p>
+    <>
+    <Modal 
+            aria-labelledby="contained-modal-title-vcenter"
+            show = {show} 
+        >
+            <Modal.Header>
+                <Modal.Title>Register</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Register/>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant = 'contained' onClick={handleClose}> Close</Button>
+            </Modal.Footer>
+        </Modal>
+    <div className = 'home-container'>
+        <div className = 'home-welcome-card'>
+            <h1>FacePage</h1>
+            <img src = {logo} alt = 'logo' className = 'logo'/>
+            <p>Welcome Back</p>
+            <p>A safe place to social media</p>
         </div>
-        <div>
+        <div className = 'home-login-card'>
             <form onSubmit={formik.handleSubmit}>
                 <input 
+                    className = 'form-input'
                     type = 'email'
                     name = 'email'
                     onChange = {formik.handleChange}
                     value = {formik.values.email}
-                />
+                /><br/><br/>
                 <input 
+                    className = 'form-input'
                     type = 'password'
                     name = 'password'
                     onChange = {formik.handleChange}
                     value = {formik.values.password}
-                />
+                /><br/><br/>
                 <Button variant='contained' type = 'submit' onClose={()=>{}}>Log In</Button>
             </form>
-        </div>
-        <div>
-            {isSuccess && <Alert icon={<CheckIcon fontSize = 'inhereit'/>} severity='success'>Login Successful!</Alert>}
-            {isPending && <Alert severity='info'>Loading...</Alert>}
-            {isError && <Alert severity='error'>{error.message}</Alert>}
+            <br/>
+            <Button 
+                variant = 'contained' 
+                color = 'secondary'
+                onClick={handleShow}
+                >Sign Up</Button>
+            <br/>
+            <div>
+                {isSuccess && <Alert icon={<CheckIcon fontSize = 'inhereit'/>} severity='success'>Login Successful!</Alert>}
+                {isPending && <Alert severity='info'>Loading...</Alert>}
+                {isError && <Alert severity='error'>{error.message}</Alert>}
+            </div>
         </div>
     </div>
+    </>
   )
 }
 
