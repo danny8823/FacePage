@@ -63,7 +63,7 @@ const Register = () => {
                 value = {regFormik.values.email}
             />
             {regFormik.touched.email && regFormik.errors.email &&(
-                <span>{regFormik.errors.email}</span>
+                <span className = 'form-error-message'>{regFormik.errors.email}</span>
             )}
             <label>Username</label>
             <input
@@ -74,7 +74,7 @@ const Register = () => {
                 value = {regFormik.values.username}
             />
             {regFormik.touched.username && regFormik.errors.username &&(
-                <span>{regFormik.errors.username}</span>
+                <span className = 'form-error-message'>{regFormik.errors.username}</span>
             )}
             <label>Password</label>
             <input
@@ -85,7 +85,7 @@ const Register = () => {
                 value = {regFormik.values.password}
             />
             {regFormik.touched.password && regFormik.errors.password && (
-                <span>{regFormik.errors.password}</span>
+                <span className = 'form-error-message'>{regFormik.errors.password}</span>
             )}
             <label>Confirm Password</label>
             <input
@@ -96,7 +96,7 @@ const Register = () => {
                 value = {regFormik.values.confirmPassword}
             />
             {regFormik.touched.confirmPassword && regFormik.errors.confirmPassword && (
-                <span>{regFormik.errors.confirmPassword}</span>
+                <span className = 'form-error-message'>{regFormik.errors.confirmPassword}</span>
              )}
             <Button type = 'submit'>Register</Button>
         </form>

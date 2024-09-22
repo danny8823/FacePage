@@ -11,6 +11,7 @@ import { loginAction } from '../../redux/slice/authSlice';
 import './Home.css'
 import logo from '../../assets/fp-logo.png'
 import Register from '../Register/Register';
+import Footer from '../Footer/Footer';
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -99,6 +100,7 @@ const Home = () => {
             </div>
         </div>
     </div>
+    <Footer/>
     </>
   )
 }
