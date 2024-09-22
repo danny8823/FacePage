@@ -5,7 +5,9 @@ import { registerAPI } from '../../services/userServices'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
-import { Button } from '@mui/material'
+import { Alert, Button } from '@mui/material'
+import CheckIcon from '@mui/icons-material/Check'
+import './Register.css'
 
 const Register = () => {
     const navigate = useNavigate()
@@ -16,7 +18,7 @@ const Register = () => {
     })
 
     const validationSchema = Yup.object({
-        username: Yup.string().required('Username is required'),
+        username: Yup.string().required('username is required'),
         email: Yup.string()
             .email("invalid email")
             .required("email is required"),
@@ -60,6 +62,9 @@ const Register = () => {
                 onChange={regFormik.handleChange}
                 value = {regFormik.values.email}
             />
+            {regFormik.touched.email && regFormik.errors.email &&(
+                <span>{regFormik.errors.email}</span>
+            )}
             <label>Username</label>
             <input
                 className = 'form-input'
@@ -68,6 +73,9 @@ const Register = () => {
                 onChange={regFormik.handleChange}
                 value = {regFormik.values.username}
             />
+            {regFormik.touched.username && regFormik.errors.username &&(
+                <span>{regFormik.errors.username}</span>
+            )}
             <label>Password</label>
             <input
                 className = 'form-input'
@@ -76,17 +84,25 @@ const Register = () => {
                 onChange={regFormik.handleChange}
                 value = {regFormik.values.password}
             />
+            {regFormik.touched.password && regFormik.errors.password && (
+                <span>{regFormik.errors.password}</span>
+            )}
             <label>Confirm Password</label>
             <input
                 className = 'form-input'
-                type='confirmPassword'
+                type='password'
                 name = 'confirmPassword'
                 onChange={regFormik.handleChange}
                 value = {regFormik.values.confirmPassword}
             />
-            <span>{regFormik.errors.password}</span>
+            {regFormik.touched.confirmPassword && regFormik.errors.confirmPassword && (
+                <span>{regFormik.errors.confirmPassword}</span>
+             )}
             <Button type = 'submit'>Register</Button>
         </form>
+        {isSuccess && <Alert icon={<CheckIcon fontsize = 'inhereit'/>} severity='success'>Register Successful</Alert>}
+        {isPending && <Alert severity='info'>Loading...</Alert>}
+        {isError && <Alert severity='error'>{error.message}</Alert>}
     </div>
   )
 }
