@@ -6,17 +6,17 @@ const Navbar = () => {
   return (
     <div className = 'navbar-container'> 
         <div>
-            <Link>Logo</Link>
+            <Link className = 'nav-link'>Logo</Link>
         </div>
         <div>
-            <Link>Home</Link>
-            <Link>Videos</Link>
-            <Link>MarketPlace</Link>
+            <Link className = 'nav-link'>Home</Link>
+            <Link className = 'nav-link'>Videos</Link>
+            <Link className = 'nav-link'>MarketPlace</Link>
         </div>
         <div>
-            <Link>Messenger</Link>
-            <Link>Notifications</Link>
-            <Link>Dashboard</Link>
+            <Link className = 'nav-link'>Messenger</Link>
+            <Link className = 'nav-link'>Notifications</Link>
+            <Link className = 'nav-link'>Dashboard</Link>
         </div>
     </div>
   )

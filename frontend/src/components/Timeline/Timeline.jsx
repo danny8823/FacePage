@@ -8,8 +8,8 @@ import Navbar from './Navbar/Navbar'
 import PostCard from './PostCard/PostCard'
 import {Card} from 'react-bootstrap'
 
-const Timeline = () => {
-  const {user} = useSelector((state) => state?.auth?.user)
+const Timeline = ({user}) => {
+  console.log('this is props', user)
 
   const {data:posts, isError, isLoading, isFetched, error} = useQuery({
     queryFn: ()=> getPostsApi(),
@@ -22,7 +22,7 @@ const Timeline = () => {
     <Navbar/>
       <div className = 'body'>
         <div className = 'left-bar'>
-          <Link>{user && user.username ? user.username : 'guest'}</Link>
+          <Link><img className = 'user-img' src = {user.image} alt = 'face-image'/>{user && user.username ? user.username : 'guest'}</Link>
           <Link>Images</Link>
           <Link>Friends</Link>
           <Link>Posts</Link>
@@ -32,6 +32,7 @@ const Timeline = () => {
             {posts?.map((post) => (
               <Card key = {post._id} className = 'post-card'>
                 <Card.Header>
+                  <img className = 'user-img' src = {user.image} alt = 'face-image'/>
                   {post.author.username}
                 </Card.Header>
                 <Card.Body>

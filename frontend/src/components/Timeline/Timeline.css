@@ -28,4 +28,12 @@
 .post-card {
     width: 600px;
     margin-bottom: 20px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.user-img {
+    width: 20px;
+    height: auto;
+    border-radius: 100%;
+    margin-right: 5px;
 }

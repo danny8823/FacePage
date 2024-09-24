@@ -7,8 +7,11 @@
     margin: 0;
 }
 
-a {
+.nav-link {
     text-decoration: none;
-    color: black;
-    margin: 5px;
+    margin-left: 5px;
+}
+
+.navbar-container > div {
+    display: flex;
 }
