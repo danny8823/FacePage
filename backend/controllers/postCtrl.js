@@ -22,11 +22,9 @@ const postController = {
         })
     }),
     listAllPost: asyncHandler(async(req,res) => {
-        const allPosts = await Post.find()
 
-        res.json({
-            allPosts
-        })
+        const allPosts = await Post.find().populate('author')
+        res.json(allPosts)
     }),
     listByAuthor: asyncHandler(async(req,res) => {
         const {authorId} = req.body
