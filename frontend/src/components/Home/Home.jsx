@@ -29,15 +29,15 @@ const Home = () => {
   console.log('show', show)
   const formik = useFormik({
     initialValues: {
-        email: 'Email Address',
-        password: 'password'
+        email: '',
+        password: ''
     },
     onSubmit: (values) => {
         mutateAsync(values)
             .then((data)=>{
                 dispatch(loginAction(data))
                 localStorage.setItem('userInfo', JSON.stringify(data))
-                // navigate('/')
+                navigate('/timeline')
             })
             .catch((error)=>{
                 console.log(error)
@@ -84,7 +84,7 @@ const Home = () => {
                     onChange = {formik.handleChange}
                     value = {formik.values.password}
                 /><br/><br/>
-                <Button variant='contained' type = 'submit' onClose={()=>{}}>Log In</Button>
+                <Button variant='contained' type = 'submit'>Log In</Button>
             </form>
             <br/>
             <Button 
