@@ -2,4 +2,14 @@
     word-break: break-word;
     overflow: auto;
     resize: none;
+    border: none;
+    background-color: whitesmoke;
+    height: 100px;
+}
+
+.post-title-input, .post-image-input {
+    border: none;
+    background-color: whitesmoke;
+    height: 50px;
+    font-size: 20px;
 }

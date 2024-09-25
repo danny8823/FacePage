@@ -3,7 +3,8 @@ const Post = require('../model/PostModel')
 
 const postController = {
     post: asyncHandler(async(req,res) => {
-        const {title,author,dateTime, content} = req.body
+
+        const {title,author,dateTime, content,image} = req.body
         
         if(!title || !author || !dateTime || !content)  {
             throw new Error ("All fields are required to post")
@@ -13,7 +14,8 @@ const postController = {
             title,
             author,
             dateTime,
-            content
+            content,
+            image
         })
 
         res.json({
@@ -24,6 +26,7 @@ const postController = {
     listAllPost: asyncHandler(async(req,res) => {
 
         const allPosts = await Post.find().populate('author')
+
         res.json(allPosts)
     }),
     listByAuthor: asyncHandler(async(req,res) => {
@@ -38,10 +41,10 @@ const postController = {
         res.send(allPostsByAuthor)
     }),
     listOne: asyncHandler(async(req,res) => {
-        const {_id} = req.body
-
-        const post = await Post.findById(_id)
-
+        const {_id} = req.params
+        console.log('this is params', _id)
+        const post = await Post.findById(_id).populate('author')
+        
         res.json({
             post
         })

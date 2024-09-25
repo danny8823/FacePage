@@ -37,3 +37,8 @@
     border-radius: 100%;
     margin-right: 5px;
 }
+
+.post-image {
+    display: block;
+    width: 100%;
+}

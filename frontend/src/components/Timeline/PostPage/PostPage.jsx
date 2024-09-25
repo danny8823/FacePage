@@ -59,6 +59,9 @@ const PostPage = ({user}) => {
                 onChange={formik.handleChange}
                 value = {formik.values.image}
                 />
+            <p>Image preview</p>
+            {formik.values.image && <img src = {formik.values.image} alt = 'preview'/>}
+            
                 <Button 
                     variant='contained'
                     color = 'secondary'

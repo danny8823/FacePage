@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import './Timeline.css'
 import { getPostsApi } from '../../services/postServices'
@@ -7,14 +7,20 @@ import {useQuery} from '@tanstack/react-query'
 import Navbar from './Navbar/Navbar'
 import PostCard from './PostCard/PostCard'
 import {Card} from 'react-bootstrap'
+import { getCommentsAPI } from '../../services/commentServices'
+import { Button } from '@mui/material'
 
 const Timeline = ({user}) => {
+  const navigate = useNavigate();
 
   const {data:posts, isError, isLoading, error} = useQuery({
     queryFn: ()=> getPostsApi(),
     queryKey: ['list-posts']
   })
 
+  const goToComment = (_id) => {
+    navigate(`/post/${_id}`)
+  }
 
   return (
     <>
@@ -41,7 +47,11 @@ const Timeline = ({user}) => {
                     {post.title}
                   </Card.Title>
                   <Card.Text>
+                    {post.image && <img className = 'post-image' src = {post.image} alt = 'post'/>}
                     {post.content}
+                  </Card.Text>
+                  <Card.Text>
+                    <Button onClick={()=>{goToComment(post._id)}}>Comment</Button>
                   </Card.Text>
                 </Card.Body>
               </Card>

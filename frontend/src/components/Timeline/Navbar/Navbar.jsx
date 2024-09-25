@@ -10,12 +10,8 @@ const Navbar = () => {
         </div>
         <div>
             <Link className = 'nav-link'>Home</Link>
-            <Link className = 'nav-link'>Videos</Link>
-            <Link className = 'nav-link'>MarketPlace</Link>
         </div>
         <div>
-            <Link className = 'nav-link'>Messenger</Link>
-            <Link className = 'nav-link'>Notifications</Link>
             <Link className = 'nav-link'>Dashboard</Link>
         </div>
     </div>
