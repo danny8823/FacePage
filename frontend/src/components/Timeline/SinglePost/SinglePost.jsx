@@ -3,14 +3,22 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { getPostAPI } from '../../../services/postServices'
 import { Card } from 'react-bootstrap'
+import { getCommentsAPI } from '../../../services/commentServices'
 
 const SinglePost = () => {
     const {_id} = useParams()
-    const {data: postData, isError, isLoading, error} = useQuery({
+    
+    const {data: postData} = useQuery({
         queryFn: () => getPostAPI(_id),
-        queryKey: ['post']
+        queryKey: ['post',_id]
     })
     
+    const {data: commentData, isError, isLoading, error} = useQuery({
+      queryFn:() => getCommentsAPI(_id),
+      queryKey: ['comment', _id]
+    })
+
+    console.log('comment data', commentData)
   if(postData) {
     const {post} = postData
 

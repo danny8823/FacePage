@@ -42,7 +42,6 @@ const postController = {
     }),
     listOne: asyncHandler(async(req,res) => {
         const {_id} = req.params
-        console.log('this is params', _id)
         const post = await Post.findById(_id).populate('author')
         
         res.json({

@@ -47,16 +47,17 @@ const commentControl = {
         })
     }),
     listCommentsByPost: asyncHandler(async(req,res) => {
-        const {postId} = req.body
-
-        if(!postId) {
+        console.log("THIS IS BODY",req.query)
+        const {_id} = req.query
+        
+        if(!_id) {
             res.json({
                 error: 'Please fill out all fields'
             })
         }
 
         const commentsByPost = await Comment.find({
-            post: postId
+            post: _id
         })
 
         res.send(commentsByPost)
