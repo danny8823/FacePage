@@ -1,0 +1,5 @@
+.post-content-input {
+    word-break: break-word;
+    overflow: auto;
+    resize: none;
+}

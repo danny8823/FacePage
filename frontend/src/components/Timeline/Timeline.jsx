@@ -10,7 +10,7 @@ import {Card} from 'react-bootstrap'
 
 const Timeline = ({user}) => {
 
-  const {data:posts, isError, isLoading, isFetched, error} = useQuery({
+  const {data:posts, isError, isLoading, error} = useQuery({
     queryFn: ()=> getPostsApi(),
     queryKey: ['list-posts']
   })
@@ -27,6 +27,8 @@ const Timeline = ({user}) => {
           <Link>Posts</Link>
         </div>
         <div className = 'timeline'>
+          {isLoading && <p>Loading posts....</p>}
+          {isError && <p>{error.message}</p>}
           <PostCard user = {user}/>
             {posts?.map((post) => (
               <Card key = {post._id} className = 'post'>

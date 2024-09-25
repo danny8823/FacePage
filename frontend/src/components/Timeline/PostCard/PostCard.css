@@ -3,10 +3,11 @@
     flex-direction: column;
     align-items: center;
     width: 600px;
-    height: 100px;
+    height: 140px;
     background-color: white;
     border-radius: 10px;
     margin-bottom: 20px;
+    padding: 10px;
 }
 
 .post-card {
