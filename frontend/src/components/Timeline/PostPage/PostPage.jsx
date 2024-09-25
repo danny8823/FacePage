@@ -3,10 +3,12 @@ import { useMutation } from '@tanstack/react-query'
 import { useFormik } from 'formik'
 import { postPostAPI } from '../../../services/postServices'
 import './PostPage.css'
-import { Button } from '@mui/material'
+import { Alert, Button } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 const PostPage = ({user}) => {
-    console.log('USER', user)
+    const navigate = useNavigate()
+
     const {mutateAsync,isPending,isError,error,isSuccess} = useMutation({
         mutationFn: postPostAPI,
         mutationKey: ['post']
@@ -24,6 +26,7 @@ const PostPage = ({user}) => {
             mutateAsync(values)
                 .then((data)=>{
                     console.log('this is post data', data)
+                    window.location.reload()
                 })
                 .catch((error) => {
                     console.log('this is error', error)
@@ -61,6 +64,9 @@ const PostPage = ({user}) => {
                     color = 'secondary'
                     type = 'submit'>Post</Button>
         </form>
+        {isSuccess && <Alert severity='success'>Post Successfully Posted</Alert>}
+        {isPending && <Alert severity='info'>Posting......</Alert>}
+        {isError && <Alert severity='error'>{error.message}</Alert>}
     </div>
   )
 }
