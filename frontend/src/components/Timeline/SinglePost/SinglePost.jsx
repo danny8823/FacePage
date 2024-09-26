@@ -5,8 +5,9 @@ import { getPostAPI } from '../../../services/postServices'
 import { Card } from 'react-bootstrap'
 import { getCommentsAPI } from '../../../services/commentServices'
 import './SinglePost.css'
+import PostComments from '../Comments/PostComments'
 
-const SinglePost = () => {
+const SinglePost = ({authorId}) => {
     const {_id} = useParams()
     
     const {data: postData} = useQuery({
@@ -33,8 +34,9 @@ const SinglePost = () => {
           </Card.Header>
           <Card.Body>{post && post.content ? post.content : <p>No data</p>}</Card.Body>
         </Card>
+        <PostComments postId = {post._id} authorId = {authorId}/>
         {commentData?.map((comment)=>(
-          <Card className = 'comment-card'>
+          <Card className = 'comment-card' key = {comment._id}>
             <Card.Body>
               {comment.comment}
             </Card.Body>

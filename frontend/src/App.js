@@ -8,13 +8,12 @@ import SinglePost from './components/Timeline/SinglePost/SinglePost'
 
 const App = () => {
   const {user} = useSelector((state) => state?.auth?.user)
-
   return (
     <BrowserRouter>
       <Routes>
         <Route path = '/' element = {<Home/>}/>
         <Route path = '/timeline' element = {<Timeline user={user}/>}/>
-        <Route path = '/post/:_id' element = {<SinglePost/>}/>
+        <Route path = '/post/:_id' element = {<SinglePost authorId={user._id}/>}/>
       </Routes>
     </BrowserRouter>
   )
