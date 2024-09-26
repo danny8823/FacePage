@@ -1,0 +1,20 @@
+.single-post-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.single-post-card {
+    width: 80%;
+    margin: 20px;
+}
+
+.single-post-user-img {
+    width: 20px;
+    margin: 0 5px 0 5px;
+    border-radius: 10px;
+}
+
+.comment-card {
+    width: 40%;
+    margin: 20px;
+}

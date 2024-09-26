@@ -8,9 +8,7 @@ export const getPostsApi = async() => {
 }
 
 export const getPostAPI = async(_id) => {
-    console.log('api, _ID',_id)
     const response = await axios.get(`${BASE_URL}/post/list-one/${_id}`)
-    console.log('api', response.data)
     return response.data
 }
 

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { getPostAPI } from '../../../services/postServices'
 import { Card } from 'react-bootstrap'
 import { getCommentsAPI } from '../../../services/commentServices'
+import './SinglePost.css'
 
 const SinglePost = () => {
     const {_id} = useParams()
@@ -17,17 +18,32 @@ const SinglePost = () => {
       queryFn:() => getCommentsAPI(_id),
       queryKey: ['comment', _id]
     })
-
-    console.log('comment data', commentData)
+  
+    console.log('this is comment data ===>', commentData)
   if(postData) {
     const {post} = postData
 
     return (
-      <div>
-        <Card>
-          <Card.Header>{post && post.title ? post.title : <p>No data</p>} by {post && post.author ? post.author.username : <p>No user data</p>}</Card.Header>
+      <div className = 'single-post-body'>
+        <Card className = 'single-post-card'>
+          <Card.Header>
+            {post && post.title ? post.title : <p>No data</p>} by 
+            <img className = 'single-post-user-img' src = {post.author?.image} alt = 'user'/>
+            {post && post.author ? post.author.username : <p>No user data</p>}
+          </Card.Header>
           <Card.Body>{post && post.content ? post.content : <p>No data</p>}</Card.Body>
         </Card>
+        {commentData?.map((comment)=>(
+          <Card className = 'comment-card'>
+            <Card.Body>
+              {comment.comment}
+            </Card.Body>
+            <Card.Footer>
+              Comment by - 
+              {comment.author && comment.author.username ? comment.author.username : <span>Guest</span>}
+            </Card.Footer>
+          </Card>
+        ))}
       </div>
     )
   }

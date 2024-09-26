@@ -6,7 +6,6 @@ const User = require('../model/UserModel')
 const commentControl = {
     postComment : asyncHandler(async(req,res) => {
         const {comment,postId,authorId} = req.body
-        console.log(req.body)
         if(!comment || !postId || !authorId) {
             res.json({
                 error: 'Please fill out all fields'
@@ -58,7 +57,7 @@ const commentControl = {
 
         const commentsByPost = await Comment.find({
             post: _id
-        })
+        }).populate('author')
 
         res.send(commentsByPost)
 
