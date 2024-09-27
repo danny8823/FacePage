@@ -2,7 +2,7 @@ import React from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { useFormik } from 'formik'
 import { postCommentsAPI } from '../../../services/commentServices'
-import { Button } from 'react-bootstrap'
+import { Alert, Button } from 'react-bootstrap'
 import './PostComments.css'
 
 const PostComments = ({authorId,postId}) => {
@@ -22,13 +22,14 @@ const PostComments = ({authorId,postId}) => {
             mutateAsync(values)
                 .then((data) => {
                     console.log('comment posted', data)
+                    window.location.reload()
                 })
                 .catch((error) => {
                     console.log('this is an error',error)
                 })
         }
     })
-
+    
     return (
     <div className = 'comment-form-container'>
         <form 
@@ -44,6 +45,9 @@ const PostComments = ({authorId,postId}) => {
                 value = {formik.values.comment}
             />
             <Button type='submit'>Submit</Button>
+            {isPending && <Alert variant='info'>Posting comment....</Alert>}
+            {isSuccess && <Alert variant='success'>Commented successfully</Alert>}
+            {isError && <Alert variant='danger'>Error posting comment{error.message}</Alert>}
         </form>
     </div>
     )

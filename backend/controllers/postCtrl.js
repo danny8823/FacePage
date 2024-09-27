@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler')
 const Post = require('../model/PostModel')
+const CommentModel = require('../model/CommentModel')
 
 const postController = {
     post: asyncHandler(async(req,res) => {
@@ -26,11 +27,12 @@ const postController = {
     listAllPost: asyncHandler(async(req,res) => {
 
         const allPosts = await Post.find().populate('author')
-
+        
         res.json(allPosts)
     }),
     listByAuthor: asyncHandler(async(req,res) => {
-        const {authorId} = req.body
+        const {authorId} = req.query
+        console.log(req)
         if(!authorId) {
             throw new Error('Need author id')
         }

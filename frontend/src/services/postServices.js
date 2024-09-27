@@ -19,3 +19,9 @@ export const postPostAPI = async({title,content,image,dateTime,author}) => {
 
     return response.data
 }
+
+export const getPostsByAuthorAPI = async (_id) => {
+    console.log('This is api call',_id)
+    const response = await axios.get(`${BASE_URL}/post/list-by-author`,{authorId: _id})
+    return response.data
+}

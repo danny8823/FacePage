@@ -42,3 +42,8 @@
     display: block;
     width: 100%;
 }
+
+.timeline-card-header {
+    display: flex;
+    justify-content: space-between;
+}

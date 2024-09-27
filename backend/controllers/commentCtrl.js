@@ -46,7 +46,6 @@ const commentControl = {
         })
     }),
     listCommentsByPost: asyncHandler(async(req,res) => {
-        console.log("THIS IS BODY",req.query)
         const {_id} = req.query
         
         if(!_id) {
@@ -55,7 +54,7 @@ const commentControl = {
             })
         }
 
-        const commentsByPost = await Comment.find({
+        const commentsByPost = await Comment.find({ 
             post: _id
         }).populate('author')
 
