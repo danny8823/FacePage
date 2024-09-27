@@ -31,13 +31,13 @@ const postController = {
         res.json(allPosts)
     }),
     listByAuthor: asyncHandler(async(req,res) => {
-        const {authorId} = req.query
-        console.log(req)
-        if(!authorId) {
+        const {_id} = req.params
+        console.log(_id)
+        if(!_id) {
             throw new Error('Need author id')
         }
         const allPostsByAuthor = await Post.find({
-            author: authorId
+            author: _id
         })
 
         res.send(allPostsByAuthor)

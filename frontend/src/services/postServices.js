@@ -21,7 +21,11 @@ export const postPostAPI = async({title,content,image,dateTime,author}) => {
 }
 
 export const getPostsByAuthorAPI = async (_id) => {
-    console.log('This is api call',_id)
-    const response = await axios.get(`${BASE_URL}/post/list-by-author`,{authorId: _id})
+    const response = await axios.get(`${BASE_URL}/post/list-by-author/${_id}`)
+    return response.data
+}
+
+export const deletePostAPI = async (_id) => {
+    const response = await axios.delete(`${BASE_URL}/post/delete-post/${_id}`)
     return response.data
 }

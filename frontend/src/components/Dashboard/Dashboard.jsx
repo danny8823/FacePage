@@ -1,19 +1,16 @@
 import React from 'react'
 import Navbar from '../Timeline/Navbar/Navbar'
 import './Dashboard.css'
-import { Button } from 'react-bootstrap'
+import { Button, Card } from 'react-bootstrap'
 import { useQuery } from '@tanstack/react-query'
 import { getPostsByAuthorAPI } from '../../services/postServices'
 
 const Dashboard = ({user}) => {
-    console.log(user._id)
+
     const {data: post, isError, isLoading, error} = useQuery({
         queryFn: () => getPostsByAuthorAPI(user._id),
         queryKey: ['post', user._id]
     })
-
-    console.log(post)
-
 
     return (
     <div>
@@ -29,7 +26,16 @@ const Dashboard = ({user}) => {
                 <Button variant = 'outline-secondary'>Change profile picture</Button>
             </div>
             <div>
-                
+                {post?.map((item) => (
+                    <Card key = {item._id} className = 'dashboard-post-card'>
+                        <Card.Title>
+                            {item.title}
+                        </Card.Title>
+                        <Card.Body>
+                            {item.content}
+                        </Card.Body>
+                    </Card>
+                ))}
             </div>
         </div>
     </div>
