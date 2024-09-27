@@ -7,5 +7,5 @@ postRouter.get('/api/v1/post/list-all', postController.listAllPost)
 postRouter.get('/api/v1/post/list-one/:_id', postController.listOne)
 postRouter.get('/api/v1/post/list-by-author/:_id', postController.listByAuthor)
 postRouter.put('/api/v1/post/edit-post', postController.editPost)
-postRouter.delete('/api/v1/post/delete-post',postController.deletePost)
+postRouter.delete('/api/v1/post/delete-post/:_id',postController.deletePost)
 module.exports = postRouter

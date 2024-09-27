@@ -51,9 +51,7 @@ const postController = {
         })
     }),
     deletePost: asyncHandler(async(req,res) => {
-        const {_id} = req.body
         const postToDelete = await Post.findByIdAndDelete(_id)
-
         res.json({
             postToDelete,
             message: "Post deleted"
