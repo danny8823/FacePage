@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../Timeline/Navbar/Navbar'
 import './Dashboard.css'
-import { Button, Card } from 'react-bootstrap'
+import { Button, Card, Modal } from 'react-bootstrap'
 import { useQuery } from '@tanstack/react-query'
 import { deletePostAPI, getPostsByAuthorAPI } from '../../services/postServices'
 import { useDispatch, useSelector } from 'react-redux'
+import UpdateProfile from './UpdateProfile.jsx/UpdateProfile'
 
 const Dashboard = () => {
-    const dispatch = useDispatch()
+    const [show,setShow] = useState(false)
+
+    const handleClose = () => setShow(false)
+    const handleOpen = () => setShow(true)
+
     const {user} = useSelector((state) => state?.auth?.user)
     const {data: post, isError, isLoading, error} = useQuery({
         queryFn: () => getPostsByAuthorAPI(user._id),
@@ -23,13 +28,22 @@ const Dashboard = () => {
         <Navbar/>
         <div className = 'dashboard-body'>
             <div className = 'profile-card'>
-                <p>Username: {user.username}</p>
-                <Button variant = 'outline-secondary'>Change username</Button>
-                <p>Email: {user.email}</p>                
-                <Button variant = 'outline-secondary'>Change email</Button>
-                <Button variant = 'outline-secondary'>Change password</Button>
                 <img src = {user?.image} alt ='profile'/>
-                <Button variant = 'outline-secondary'>Change profile picture</Button>
+                <p>Username: {user.username}</p>
+                <p>Email: {user.email}</p>                
+                <Button variant = 'outline-secondary' onClick = {handleOpen}>Update/Edit Profile</Button>
+                <Modal show = {show}>
+                    <Modal.Header>
+                        <Modal.Title>Edit Form</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <UpdateProfile/>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant = 'contained' onClick={handleClose}>Close</Button>
+                    </Modal.Footer>  
+                </Modal>
+                
             </div>
             <div className = 'user-posts-container'>
                 {post?.map((item) => (

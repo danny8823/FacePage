@@ -7,6 +7,7 @@ import { getCommentsAPI } from '../../../services/commentServices'
 import './SinglePost.css'
 import PostComments from '../Comments/PostComments'
 import { useSelector } from 'react-redux'
+import Navbar from '../Navbar/Navbar'
 const SinglePost = () => {
 
     const {user} = useSelector((state) => state?.auth?.user)
@@ -22,11 +23,11 @@ const SinglePost = () => {
       queryKey: ['comment', _id]
     })
   
-    console.log('this is comment data ===>', commentData)
   if(postData) {
     const {post} = postData
-
     return (
+      <>
+       <Navbar/>
       <div className = 'single-post-body'>
         <Card className = 'single-post-card'>
           <Card.Header>
@@ -49,6 +50,7 @@ const SinglePost = () => {
           </Card>
         ))}
       </div>
+      </>
     )
   }
 

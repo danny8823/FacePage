@@ -32,7 +32,6 @@ const postController = {
     }),
     listByAuthor: asyncHandler(async(req,res) => {
         const {_id} = req.params
-        console.log(_id)
         if(!_id) {
             throw new Error('Need author id')
         }

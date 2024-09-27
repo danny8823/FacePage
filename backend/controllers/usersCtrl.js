@@ -94,13 +94,15 @@ const usersController = {
         })
     }),
     updateProfile: asyncHandler(async (req,res) => {
-        const {email,username,description} = req.body;
+        console.log('udpate profile req.body', req.body)
+        const {email,username,description,password} = req.body;
         const updatedUser = await User.findByIdAndUpdate(
             req.user,
             {
                 username,
                 email,
-                description
+                description,
+                password
             },
             {
                 new: true

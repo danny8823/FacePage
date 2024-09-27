@@ -22,6 +22,16 @@ export const registerAPI = async({
         password,
         email
     })
-    console.log('registerAPI', response.data)
+    return response.data
+}
+
+export const updateProfileAPI = async({email,image,username}) => {
+    console.log('update api fired',email,image,username)
+    const response = await axios.post(`${BASE_URL}/users/update-profile`, {
+        email,
+        image,
+        username
+    })
+
     return response.data
 }
