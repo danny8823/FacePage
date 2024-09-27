@@ -8,17 +8,18 @@ import SinglePost from './components/Timeline/SinglePost/SinglePost'
 import Dashboard from './components/Dashboard/Dashboard'
 
 const App = () => {
-  const {user} = useSelector((state) => state?.auth?.user)
-  return (
+
+   return (
     <BrowserRouter>
       <Routes>
         <Route path = '/' element = {<Home/>}/>
-        <Route path = '/timeline' element = {<Timeline user={user}/>}/>
-        <Route path = '/post/:_id' element = {<SinglePost authorId={user._id}/>}/>
-        <Route path = '/dashboard' element = {<Dashboard user = {user}/>}/>
+        <Route path = '/timeline' element = {<Timeline/>}/>
+        <Route path = '/post/:_id' element = {<SinglePost/>}/>
+        <Route path = '/dashboard' element = {<Dashboard/>}/>
       </Routes>
     </BrowserRouter>
-  )
-}
+  ) 
+  }
+  
 
 export default App

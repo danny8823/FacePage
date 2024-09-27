@@ -10,7 +10,8 @@ import {Card,Badge} from 'react-bootstrap'
 import { getCommentsAPI } from '../../services/commentServices'
 import { Button } from '@mui/material'
 
-const Timeline = ({user}) => {
+const Timeline = () => {
+  const {user} = useSelector((state) => state?.auth?.user)
   const navigate = useNavigate();
 
   const {data:posts, isError, isLoading, error} = useQuery({

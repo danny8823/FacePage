@@ -4,11 +4,11 @@ import './Dashboard.css'
 import { Button, Card } from 'react-bootstrap'
 import { useQuery } from '@tanstack/react-query'
 import { deletePostAPI, getPostsByAuthorAPI } from '../../services/postServices'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
-const Dashboard = ({user}) => {
+const Dashboard = () => {
     const dispatch = useDispatch()
-
+    const {user} = useSelector((state) => state?.auth?.user)
     const {data: post, isError, isLoading, error} = useQuery({
         queryFn: () => getPostsByAuthorAPI(user._id),
         queryKey: ['post', user._id]

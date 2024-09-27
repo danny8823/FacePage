@@ -10,6 +10,7 @@ const authSlice = createSlice({
             state.user = action.payload
         },
         logoutAction: (state,action) => {
+            console.log('this action function fired')
             state.user = null
         }
     }

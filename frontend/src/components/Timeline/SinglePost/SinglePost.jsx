@@ -6,8 +6,10 @@ import { Card } from 'react-bootstrap'
 import { getCommentsAPI } from '../../../services/commentServices'
 import './SinglePost.css'
 import PostComments from '../Comments/PostComments'
+import { useSelector } from 'react-redux'
+const SinglePost = () => {
 
-const SinglePost = ({authorId}) => {
+    const {user} = useSelector((state) => state?.auth?.user)
     const {_id} = useParams()
     
     const {data: postData} = useQuery({
@@ -34,7 +36,7 @@ const SinglePost = ({authorId}) => {
           </Card.Header>
           <Card.Body>{post && post.content ? post.content : <p>No data</p>}</Card.Body>
         </Card>
-        <PostComments postId = {post._id} authorId = {authorId}/>
+        <PostComments postId = {post._id} authorId = {user._id}/>
         {commentData?.map((comment)=>(
           <Card className = 'comment-card' key = {comment._id}>
             <Card.Body>
