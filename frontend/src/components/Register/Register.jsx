@@ -42,7 +42,7 @@ const Register = () => {
             mutateAsync(values)
                 .then((data)=>{
                     console.log('data', data)
-                    navigate('/')
+                    navigate('/dashboard')
                 })
                 .catch((error)=>{
                     console.log(error)

@@ -26,7 +26,6 @@ const Home = () => {
     mutationKey: ['login']
   })
 
-  console.log('show', show)
   const formik = useFormik({
     initialValues: {
         email: '',

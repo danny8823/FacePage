@@ -28,6 +28,7 @@ const Dashboard = () => {
         deletePostAPI(id)
         window.location.reload()
     }
+    
     return (
     <div>
         <Navbar/>
@@ -63,7 +64,27 @@ const Dashboard = () => {
                 
             </div>
             <div className = 'user-posts-container'>
-                {post?.map((item) => (
+            {post?.length > 0 ? (
+                post.map((item) => (
+                    <Card key={item._id} className='dashboard-post-card'>
+                    <Card.Title className='card-title-container'>
+                        <span>{item.title}</span>
+                        <span className='post-date'>{new Date(item.createdAt).toLocaleString()}</span>
+                    </Card.Title>
+                    <Card.Body>
+                        {item.content}
+                    </Card.Body>
+                    <Card.Footer>
+                        <Button variant='outline-primary' onClick={() => deleteButtonHandler(item._id)}>Delete</Button>
+                    </Card.Footer>
+                    </Card>
+                ))
+                ) : (
+                <div className = 'user-posts-container'>
+                    <h1>No posts....yet</h1>
+                </div>
+                )}
+                {/* {post?.map((item) => (
                     <Card key = {item._id} className = 'dashboard-post-card'>
                         <Card.Title className = 'card-title-container'>
                             <span>
@@ -78,7 +99,7 @@ const Dashboard = () => {
                             <Button variant='outline-primary' onClick={()=>deleteButtonHandler(item._id)}>Delete</Button>
                         </Card.Footer>
                     </Card>
-                ))}
+               ))} */}
             </div>
         </div>
     </div>
