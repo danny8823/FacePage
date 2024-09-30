@@ -35,3 +35,10 @@ export const updateProfileAPI = async({email,image,username}) => {
 
     return response.data
 }
+
+export const updatePasswordAPI = async({newPassword}) => {
+    const response = await axios.post(`${BASE_URL}/users/change-password`,{
+        newPassword
+    })
+    return response.data
+}

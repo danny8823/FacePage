@@ -29,9 +29,7 @@ const UpdateProfile = () => {
         initialValues: {
             username: user.username,
             email: user.email,
-            image: user.image,
-            password: user.password,
-            confirmPassword: user.password
+            image: user.image
         },
         validationSchema,
         onSubmit: (values) => {
@@ -71,28 +69,6 @@ const UpdateProfile = () => {
                 onChange={formik.handleChange}
                 value = {formik.values.image}
             />
-            <label>new password</label>
-            <input
-                className = 'update-profile-input'
-                type='password'
-                name = 'password'
-                onChange={formik.handleChange}
-                value = {formik.values.password}
-            />
-            {formik.touched.password && formik.errors.password && (
-                <span className = 'form-error-message'>{formik.errors.password}</span>
-            )}
-            <label>confirm new password</label>
-            <input
-                className = 'update-profile-input'
-                type='password'
-                name = 'confirmPassword'
-                onChange={formik.handleChange}
-                value = {formik.values.confirmPassword}
-            />
-            {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-                <span className = 'form-error-message'>{formik.errors.confirmPassword}</span>
-             )}
              <img className = 'update-profile-preview-img' src = {formik.values.image} alt = 'preview'/>
              <Button type = 'submit'>Update</Button>
         </form>

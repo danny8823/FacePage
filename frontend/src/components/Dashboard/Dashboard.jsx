@@ -6,12 +6,17 @@ import { useQuery } from '@tanstack/react-query'
 import { deletePostAPI, getPostsByAuthorAPI } from '../../services/postServices'
 import { useDispatch, useSelector } from 'react-redux'
 import UpdateProfile from './UpdateProfile.jsx/UpdateProfile'
+import UpdatePassword from './UpdatePassword/UpdatePassword'
 
 const Dashboard = () => {
     const [show,setShow] = useState(false)
+    const [show1, setShow1] = useState(false)
 
     const handleClose = () => setShow(false)
     const handleOpen = () => setShow(true)
+
+    const handleClose1 = () => setShow1(false)
+    const handleOpen1 = () => setShow1(true)
 
     const {user} = useSelector((state) => state?.auth?.user)
     const {data: post, isError, isLoading, error} = useQuery({
@@ -41,6 +46,18 @@ const Dashboard = () => {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant = 'contained' onClick={handleClose}>Close</Button>
+                    </Modal.Footer>  
+                </Modal>
+                <Button variant = 'outline-secondary' onClick = {handleOpen1}>Change Password</Button>
+                <Modal show = {show1}>
+                    <Modal.Header>
+                        <Modal.Title>Change Password</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <UpdatePassword/>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant = 'contained' onClick={handleClose1}>Close</Button>
                     </Modal.Footer>  
                 </Modal>
                 

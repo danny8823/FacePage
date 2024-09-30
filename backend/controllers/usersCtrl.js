@@ -27,7 +27,8 @@ const usersController = {
 
         res.json({
             message: {
-                status: 'registered'
+                status: 'registered',
+                userCreated
             }
         })
     }),
@@ -74,7 +75,7 @@ const usersController = {
     changePassword: asyncHandler(async (req,res) => {
         const {newPassword} = req.body;
 
-        const user = await User.findById('')
+        const user = await User.findById(req.user)
 
         if(!user) {
             throw new Error('User not found')
@@ -95,14 +96,13 @@ const usersController = {
     }),
     updateProfile: asyncHandler(async (req,res) => {
         console.log('udpate profile req.body', req.body)
-        const {email,username,description,password} = req.body;
+        const {email,username,description} = req.body;
         const updatedUser = await User.findByIdAndUpdate(
             req.user,
             {
                 username,
                 email,
-                description,
-                password
+                description
             },
             {
                 new: true
