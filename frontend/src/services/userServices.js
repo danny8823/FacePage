@@ -40,7 +40,7 @@ export const updateProfileAPI = async({email,image,username}) => {
     return response.data
 }
 
-export const updatePasswordAPI = async({password}) => {
+export const updatePasswordAPI = async(password) => {
     console.log('new pass', password)
     const response = await axios.put(`${BASE_URL}/users/change-password`,{
         newPassword: password

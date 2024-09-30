@@ -5,6 +5,7 @@ import { updatePasswordAPI } from '../../../services/userServices'
 import * as Yup from 'yup'
 import { Button } from 'react-bootstrap'
 import { Alert } from '@mui/material'
+
 const UpdatePassword = () => {
     const {mutateAsync, isPending, isError, error, isSuccess} = useMutation({
         mutationFn: updatePasswordAPI,
@@ -22,12 +23,11 @@ const UpdatePassword = () => {
 
     const formik = useFormik({
         initialValues: {
-            password: '',
-            confirmPassword: ''
+            password: ''
         },
         validationSchema,
         onSubmit: (values) => {
-            mutateAsync(values)
+            mutateAsync(values.password)
                 .then((data)=> {
                     console.log("update password", data)
                 })

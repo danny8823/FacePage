@@ -75,16 +75,15 @@ const usersController = {
     changePassword: asyncHandler(async (req,res) => {
         const {newPassword} = req.body;
         const user = await User.findById(req.user)
-        console.log('backend - user', req.user)
         if(!user) {
             throw new Error('User not found')
         }
 
-        const salt = bcrypt.genSalt(10)
+        const salt = await bcrypt.genSalt(10)
         const hashedPass = await bcrypt.hash(newPassword, salt)
-
         user.password = hashedPass
 
+        console.log('new-password',newPassword)
         await user.save({
             validateBeforeSave: false,
         })
