@@ -26,3 +26,23 @@
 .footer-copyright {
     margin: 20px;
 }
+
+@media (max-width: 600px) {
+    .footer-container {
+        width: 100%;
+    }
+
+    .footer-language-container {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        width: 100vw;
+    }
+    .footer-language-container > span {
+        font-size: 10px;
+        margin-right: 2px;
+    }
+
+
+}

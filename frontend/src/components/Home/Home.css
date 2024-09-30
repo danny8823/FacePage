@@ -4,6 +4,7 @@
     justify-content: space-around;
     margin: 0 10px 0 10px;
     height: 100vh;
+    min-width: 100vw;
     background-color: whitesmoke;
 }
 
@@ -56,4 +57,29 @@ form{
 
 .logo {
     background-color: whitesmoke;
+}
+
+@media (max-width: 600px) {
+    .home-container {
+        flex-direction: column;
+    }
+
+    .home-welcome-card {
+        margin: 0 auto;
+    }
+    .home-welcome-card > h1 {
+        font-size: 40px;
+    }
+
+    .home-welcome-card > img {
+        width: 100px;
+    }
+
+    .home-welcome-card > p {
+        font-size: 20px;
+    }
+
+    .home-login-card {
+        width: 300px;
+    }
 }

@@ -7,7 +7,6 @@ import {useQuery} from '@tanstack/react-query'
 import Navbar from './Navbar/Navbar'
 import PostCard from './PostCard/PostCard'
 import {Card,Badge} from 'react-bootstrap'
-import { getCommentsAPI } from '../../services/commentServices'
 import { Button } from '@mui/material'
 
 const Timeline = () => {
@@ -30,9 +29,6 @@ const Timeline = () => {
       <div className = 'body'>
         <div className = 'left-bar'>
           <Link><img className = 'user-img' src = {user.image} alt = 'face-image'/>{user && user.username ? user.username : 'guest'}</Link>
-          <Link>Images</Link>
-          <Link>Friends</Link>
-          <Link>Posts</Link>
         </div>
         <div className = 'timeline'>
           {isLoading && <p>Loading posts....</p>}
@@ -65,7 +61,6 @@ const Timeline = () => {
             ))}
         </div>
         <div className = 'right-bar'>
-          <p>This is where my friends list is</p>
         </div>
       </div>
     </>

@@ -14,3 +14,8 @@
 .navbar-container > div {
     display: flex;
 }
+
+.navbar-logo {
+    width: 40px;
+    border-radius: 100px;
+}

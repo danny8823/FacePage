@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Navbar.css'
+import logo from '../../../assets/fp-logo.png'
 import {useDispatch} from 'react-redux'
 import { logoutAction } from '../../../redux/slice/authSlice'
 import { Button } from 'react-bootstrap'
@@ -16,7 +17,7 @@ const Navbar = () => {
   return (
     <div className = 'navbar-container'> 
         <div>
-            <Link className = 'nav-link'>Logo</Link>
+            <Link className = 'nav-link' to ='/timeline'><img className = 'navbar-logo' src = {logo} alt = 'logo'/></Link>
         </div>
         <div>
             <Link className = 'nav-link' to = '/timeline'>Home</Link>

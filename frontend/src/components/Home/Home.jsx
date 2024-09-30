@@ -75,6 +75,7 @@ const Home = () => {
                     name = 'email'
                     onChange = {formik.handleChange}
                     value = {formik.values.email}
+                    placeholder='email'
                 /><br/><br/>
                 <input 
                     className = 'form-input'
@@ -82,6 +83,7 @@ const Home = () => {
                     name = 'password'
                     onChange = {formik.handleChange}
                     value = {formik.values.password}
+                    placeholder='password'
                 /><br/><br/>
                 <Button variant='contained' type = 'submit'>Log In</Button>
             </form>
