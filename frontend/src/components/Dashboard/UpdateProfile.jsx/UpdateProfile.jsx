@@ -42,6 +42,7 @@ const UpdateProfile = () => {
                 })
         }
     })
+    
   return (
     <div>
         <form onSubmit = {formik.handleSubmit}>

@@ -74,9 +74,8 @@ const usersController = {
     }),
     changePassword: asyncHandler(async (req,res) => {
         const {newPassword} = req.body;
-
         const user = await User.findById(req.user)
-
+        console.log('backend - user', req.user)
         if(!user) {
             throw new Error('User not found')
         }
