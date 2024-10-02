@@ -62,10 +62,14 @@ form{
 @media (max-width: 600px) {
     .home-container {
         flex-direction: column;
+        justify-content: center;
+        margin: 0 auto;
     }
 
     .home-welcome-card {
+        width: 100vw;
         margin: 0 auto;
+        padding-left: 50px;
     }
     .home-welcome-card > h1 {
         font-size: 40px;
