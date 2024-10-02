@@ -67,16 +67,16 @@ const Dashboard = () => {
             {post?.length > 0 ? (
                 post.map((item) => (
                     <Card key={item._id} className='dashboard-post-card'>
-                    <Card.Title className='card-title-container'>
-                        <span>{item.title}</span>
-                        <span className='post-date'>{new Date(item.createdAt).toLocaleString()}</span>
-                    </Card.Title>
-                    <Card.Body>
-                        {item.content}
-                    </Card.Body>
-                    <Card.Footer>
-                        <Button variant='outline-primary' onClick={() => deleteButtonHandler(item._id)}>Delete</Button>
-                    </Card.Footer>
+                        <Card.Title className='card-title-container'>
+                            <span>{item.title}</span>
+                            <span className='post-date'>{new Date(item.createdAt).toLocaleString()}</span>
+                        </Card.Title>
+                        <Card.Body className = 'dashboard-post-content'>
+                            {item.content}
+                        </Card.Body>
+                        <Card.Footer>
+                            <Button className = 'dash-button' variant='outline-primary' onClick={() => deleteButtonHandler(item._id)}>Delete</Button>
+                        </Card.Footer>
                     </Card>
                 ))
                 ) : (

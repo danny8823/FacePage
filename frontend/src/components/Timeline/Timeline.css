@@ -47,3 +47,38 @@
     display: flex;
     justify-content: space-between;
 }
+
+.post-title {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+@media (max-width: 700px) {
+    .body {
+        width: 100%;
+        padding: 10px;
+    }
+    .left-bar, .right-bar{
+        display: none;
+    }
+
+    .timeline {
+        width: 100vw;
+    }
+
+    .post {
+        width: 400px;
+    }
+
+    .user-name {
+        font-size: 12px;
+    }
+
+    .post-date {
+        font-size: 10px;
+    }
+
+    .post-content {
+        font-size: 14px;
+    }
+}

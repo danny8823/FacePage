@@ -22,7 +22,6 @@ const Timeline = () => {
     navigate(`/post/${_id}`)
   }
 
- console.log(posts)
   return (
     <>
     <Navbar/>
@@ -42,14 +41,14 @@ const Timeline = () => {
                     <span className = 'user-name'>{post.author.username}</span>
                   </div>
                   <div>
-                    <span>Created at: {new Date(post.createdAt).toLocaleString()}</span>
+                    <span className = 'post-date'>Created at: {new Date(post.createdAt).toLocaleString()}</span>
                   </div>
                 </Card.Header>
                 <Card.Body>
-                  <Card.Title>
+                  <Card.Title className = 'post-title'>
                     {post.title}
                   </Card.Title>
-                  <Card.Text>
+                  <Card.Text className = 'post-content'>
                     {post.image && <img className = 'post-image' src = {post.image} alt = 'post'/>}
                     {post.content}
                   </Card.Text>

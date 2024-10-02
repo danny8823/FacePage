@@ -31,10 +31,12 @@ const SinglePost = () => {
       <div className = 'single-post-body'>
         <Card className = 'single-post-card'>
           <Card.Header>
-            {post && post.title ? post.title : <p>No data</p>} by 
             <img className = 'single-post-user-img' src = {post.author?.image} alt = 'user'/>
             {post && post.author ? post.author.username : <p>No user data</p>}
           </Card.Header>
+          <Card.Title>
+            {post && post.title ? post.title : <p>No data</p>}
+          </Card.Title>
           <Card.Body>{post && post.content ? post.content : <p>No data</p>}</Card.Body>
         </Card>
         <PostComments postId = {post._id} authorId = {user._id}/>

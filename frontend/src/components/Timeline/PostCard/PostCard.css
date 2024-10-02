@@ -34,3 +34,21 @@
 .post-card > button:hover {
     background-color: darkgray;
 }
+
+@media (max-width: 700px) {
+    .post-input-body {
+        width: 300px;
+        margin-bottom: 10px;
+    }
+
+    .post-card {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .post-card > button {
+        width: 200px;
+        font-size: 12px;
+    }
+}
