@@ -34,6 +34,7 @@ const Home = () => {
     onSubmit: (values) => {
         mutateAsync(values)
             .then((data)=>{
+                console.log("this is data",data)
                 dispatch(loginAction(data))
                 localStorage.setItem('userInfo', JSON.stringify(data))
                 navigate('/timeline')

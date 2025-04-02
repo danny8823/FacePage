@@ -27,5 +27,6 @@ export const getPostsByAuthorAPI = async (_id) => {
 
 export const deletePostAPI = async (_id) => {
     const response = await axios.delete(`${BASE_URL}/post/delete-post/${_id}`)
+    console.log(_id)
     return response.data
 }

@@ -18,14 +18,16 @@ const Dashboard = () => {
     const handleClose1 = () => setShow1(false)
     const handleOpen1 = () => setShow1(true)
 
-    const {user} = useSelector((state) => state?.auth?.user)
+    const {user}= useSelector((state) => state?.auth?.user)
+    console.log(user)
     const {data: post, isError, isLoading, error} = useQuery({
-        queryFn: () => getPostsByAuthorAPI(user._id),
-        queryKey: ['post', user._id]
+        queryFn: () => getPostsByAuthorAPI(user?._id),
+        queryKey: ['post', user?._id]
     })
 
-    const deleteButtonHandler = (id) => {
-        deletePostAPI(id)
+    const deleteButtonHandler = async (id) => {
+        console.log('delete button', id)
+        await deletePostAPI(id)
         window.location.reload()
     }
     
@@ -35,8 +37,8 @@ const Dashboard = () => {
         <div className = 'dashboard-body'>
             <div className = 'profile-card'>
                 <img src = {user?.image} alt ='profile'/>
-                <p>Username: {user.username}</p>
-                <p>Email: {user.email}</p>                
+                <p>Username: {user?.username}</p>
+                <p>Email: {user?.email}</p>                
                 <Button variant = 'outline-secondary' onClick = {handleOpen}>Update/Edit Profile</Button>
                 <Modal show = {show}>
                     <Modal.Header>

@@ -8,10 +8,11 @@ import * as Yup from 'yup'
 import { Alert, Button } from '@mui/material'
 import CheckIcon from '@mui/icons-material/Check'
 import './Register.css'
+import { loginAction } from '../../redux/slice/authSlice'
 
 const Register = () => {
     const navigate = useNavigate()
-
+    const dispatch = useDispatch()
     const {mutateAsync, isPending, isError, error, isSuccess} = useMutation({
         mutationFn: registerAPI,
         mutationKey: ['register']
@@ -42,6 +43,7 @@ const Register = () => {
             mutateAsync(values)
                 .then((data)=>{
                     console.log('data', data)
+                    dispatch(loginAction(data))
                     navigate('/dashboard')
                 })
                 .catch((error)=>{

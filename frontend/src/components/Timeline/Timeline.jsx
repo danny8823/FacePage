@@ -10,7 +10,8 @@ import {Card,Badge} from 'react-bootstrap'
 import { Button } from '@mui/material'
 
 const Timeline = () => {
-  const {user} = useSelector((state) => state?.auth?.user)
+  const user = useSelector((state) => state?.auth?.user)
+  console.log('THIS IS USER', user)
   const navigate = useNavigate();
 
   const {data:posts, isError, isLoading, error} = useQuery({
@@ -22,6 +23,7 @@ const Timeline = () => {
     navigate(`/post/${_id}`)
   }
 
+  console.log(user)
   return (
     <>
     <Navbar/>
